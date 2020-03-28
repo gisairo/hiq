@@ -1987,12 +1987,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       smartdevice: {},
       manufacturer: 0,
-      manufacturers: []
+      manufacturers: [],
+      errored: {
+        manufacturererrormessage: true,
+        serialerrormessage: true,
+        descriptionerrormessage: true
+      }
     };
   },
   created: function created() {
@@ -2017,6 +2034,28 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$router.push({
           name: 'smartdevices'
         });
+      })["catch"](function (error) {
+        // console.log(error)
+        // console.log(typeof(manufacturer));
+        if (typeof manufacturer == "undefined") {
+          _this2.errored.manufacturererrormessage = "Smart Device Manufacturer is Required"; // this.errored = true;
+        } else {
+          _this2.errored.manufacturererrormessage = true;
+        }
+
+        ;
+
+        if (typeof _this2.smartdevice.serial == "undefined") {
+          _this2.errored.serialerrormessage = "Smart Device Serial is Required"; // this.errored = true;
+        } else {
+          _this2.errored.serialerrormessage = true;
+        }
+
+        if (typeof _this2.smartdevice.description == "undefined") {
+          _this2.errored.descriptionerrormessage = "Smart Device Description Required"; // this.errored = true;
+        } else {
+          _this2.errored.descriptionerrormessage = true;
+        }
       });
     }
   }
@@ -2033,6 +2072,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2076,7 +2126,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       smartdevice: {},
       manufacturer: 0,
-      manufacturers: []
+      manufacturers: [],
+      errored: {
+        serialerrormessage: true,
+        descriptionerrormessage: true
+      }
     };
   },
   created: function created() {
@@ -2104,6 +2158,21 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$router.push({
           name: 'smartdevices'
         });
+      })["catch"](function (error) {
+        console.log(_this2.smartdevice.serial);
+        console.log(_typeof(_this2.smartdevice.description));
+
+        if (_this2.smartdevice.serial == "") {
+          _this2.errored.serialerrormessage = "Smart Device Serial is Required"; // this.errored = true;
+        } else {
+          _this2.errored.serialerrormessage = true;
+        }
+
+        if (_this2.smartdevice.description == "") {
+          _this2.errored.descriptionerrormessage = "Smart Device Description Required"; // this.errored = true;
+        } else {
+          _this2.errored.descriptionerrormessage = true;
+        }
       });
     }
   }
@@ -20565,6 +20634,23 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
+          _vm.errored.serialerrormessage != true
+            ? _c(
+                "section",
+                {
+                  staticClass: "warn col-md-6 ",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c("p", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(_vm.errored.serialerrormessage))
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Smart Device Title:")]),
@@ -20595,9 +20681,26 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
+          _vm.errored.descriptionerrormessage != true
+            ? _c(
+                "section",
+                {
+                  staticClass: "warn col-md-6 ",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c("p", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(_vm.errored.descriptionerrormessage))
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Smart Device Body:")]),
+              _c("label", [_vm._v("Smart Device Description:")]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -20630,6 +20733,23 @@ var render = function() {
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
+          _vm.errored.manufacturererrormessage != true
+            ? _c(
+                "section",
+                {
+                  staticClass: "warn col-md-6 ",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c("p", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(_vm.errored.manufacturererrormessage))
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c(
               "select",
@@ -20642,6 +20762,7 @@ var render = function() {
                     expression: "manufacturer"
                   }
                 ],
+                attrs: { required: "required" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -20732,6 +20853,23 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
+          _vm.errored.serialerrormessage != true
+            ? _c(
+                "section",
+                {
+                  staticClass: "warn col-md-6 ",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c("p", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(_vm.errored.serialerrormessage))
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Smartdevice Serial:")]),
@@ -20762,6 +20900,23 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
+          _vm.errored.descriptionerrormessage != true
+            ? _c(
+                "section",
+                {
+                  staticClass: "warn col-md-6 ",
+                  staticStyle: { "margin-bottom": "20px" }
+                },
+                [
+                  _c("p", { staticClass: "alert alert-danger" }, [
+                    _vm._v(_vm._s(_vm.errored.descriptionerrormessage))
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Smartdevice Description:")]),
@@ -20826,7 +20981,7 @@ var render = function() {
                 }
               },
               [
-                _c("option", { attrs: { value: "0" } }, [
+                _c("option", { attrs: { value: "false" } }, [
                   _vm._v("Select Manufacturer")
                 ]),
                 _vm._v(" "),
