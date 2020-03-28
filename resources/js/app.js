@@ -39,7 +39,7 @@ const routes = [
   {
       name: 'home',
       path: '/',
-      component: HomeComponent
+      component: IndexComponent
   },
   {
       name: 'create',
@@ -47,8 +47,8 @@ const routes = [
       component: CreateComponent
   },
   {
-      name: 'posts',
-      path: '/posts',
+      name: 'smartdevices',
+      path: '/smartdevices',
       component: IndexComponent
   },
   {
