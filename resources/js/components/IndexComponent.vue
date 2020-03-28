@@ -42,7 +42,7 @@
         }
       },
       created() {
-      let uri = 'http://hydroiq.test/api/smartdevices';
+      let uri = '{{URL::to('/')}}/api/smartdevices';
       this.axios.get(uri).then(response => {
         this.smartdevices = response.data.data;
       });
@@ -50,7 +50,7 @@
     methods: {
       deleteSmartdevice(id)
       {
-        let uri = `http://hydroiq.test/api/smartdevice/delete/${id}`;
+        let uri = `{{URL::to('/')}}/api/smartdevice/delete/${id}`;
         this.axios.delete(uri).then(response => {
           this.smartdevices.splice(this.smartdevices.indexOf(id), 1);
         });

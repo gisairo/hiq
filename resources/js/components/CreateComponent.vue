@@ -61,7 +61,7 @@
           };
         },
         created(){
-          let manufacturer_uri = `http://hydroiq.test/api/manufacturers`;
+          let manufacturer_uri = `{{URL::to('/')}}/api/manufacturers`;
           this.axios.get(manufacturer_uri).then((response2) => {
               this.manufacturers = response2.data.data;
           });
@@ -69,7 +69,7 @@
         methods: {
           addSmartDevice(){
             // console.log(this.post);
-            let uri = 'http://hydroiq.test/api/smartdevice/create';
+            let uri = '{{URL::to('/')}}/api/smartdevice/create';
             let data = {smartdevice: this.smartdevice, manufacturer:this.manufacturer};
             this.axios.post(uri, data).then((response) => {
                this.$router.push({name: 'smartdevices'});
