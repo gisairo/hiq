@@ -1992,7 +1992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      post: {},
+      smartdevice: {},
       manufacturer: 0,
       manufacturers: []
     };
@@ -2002,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var manufacturer_uri = "http://hydroiq.test/api/manufacturers";
     this.axios.get(manufacturer_uri).then(function (response2) {
-      _this.manufacturers = response2.data.data; // console.log(this.categories);
+      _this.manufacturers = response2.data.data;
     });
   },
   methods: {
@@ -2102,7 +2102,7 @@ __webpack_require__.r(__webpack_exports__);
         smartdevice: this.smartdevice,
         manufacturer: this.manufacturer
       };
-      this.axios.smartdevice(uri, data2).then(function (response) {
+      this.axios.post(uri, data2).then(function (response) {
         _this2.$router.push({
           name: 'smartdevices'
         });
@@ -20845,6 +20845,7 @@ function listToStyles (list, options) {
 	return styles;
 }
 
+<<<<<<< HEAD
 function insertStyleElement (options, style) {
 	var target = getElement(options.insertInto)
 
@@ -20871,6 +20872,151 @@ function insertStyleElement (options, style) {
 	} else {
 		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
 	}
+=======
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("Create A Smart Device")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addSmartDevice($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Smart Device Title:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.smartdevice.serial,
+                    expression: "smartdevice.serial"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.smartdevice.serial },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.smartdevice, "serial", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Smart Device Body:")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.smartdevice.description,
+                    expression: "smartdevice.description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { rows: "5" },
+                domProps: { value: _vm.smartdevice.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.smartdevice,
+                      "description",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.manufacturer,
+                    expression: "manufacturer"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.manufacturer = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "0" } }, [
+                  _vm._v("Select Manufacturer")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.manufacturers, function(manufacturer) {
+                  return _c(
+                    "option",
+                    {
+                      domProps: {
+                        value: { id: manufacturer.id, text: manufacturer.name }
+                      }
+                    },
+                    [_vm._v(_vm._s(manufacturer.name) + "\n                 ")]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    )
+  ])
+>>>>>>> release/3.0.0
 }
 
 function removeStyleElement (style) {
@@ -21615,26 +21761,26 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Smartdevice Title:")]),
+              _c("label", [_vm._v("Smartdevice Serial:")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.title,
-                    expression: "smartdevice.title"
+                    value: _vm.smartdevice.serial,
+                    expression: "smartdevice.serial"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.smartdevice.title },
+                domProps: { value: _vm.smartdevice.serial },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "title", $event.target.value)
+                    _vm.$set(_vm.smartdevice, "serial", $event.target.value)
                   }
                 }
               })
@@ -21645,26 +21791,30 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Smartdevice Body:")]),
+              _c("label", [_vm._v("Smartdevice Description:")]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.body,
-                    expression: "smartdevice.body"
+                    value: _vm.smartdevice.description,
+                    expression: "smartdevice.description"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { rows: "5" },
-                domProps: { value: _vm.smartdevice.body },
+                domProps: { value: _vm.smartdevice.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "body", $event.target.value)
+                    _vm.$set(
+                      _vm.smartdevice,
+                      "description",
+                      $event.target.value
+                    )
                   }
                 }
               })
@@ -21712,10 +21862,10 @@ var render = function() {
                     "option",
                     {
                       domProps: {
-                        value: { id: manufacturer.id, text: manufacturer.title }
+                        value: { id: manufacturer.id, text: manufacturer.name }
                       }
                     },
-                    [_vm._v(_vm._s(manufacturer.title) + "\n                 ")]
+                    [_vm._v(_vm._s(manufacturer.name) + "\n                 ")]
                   )
                 })
               ],
@@ -33014,6 +33164,7 @@ function removeClass (el, cls) {
 
 /*  */
 
+<<<<<<< HEAD
 function resolveTransition (def$$1) {
   if (!def$$1) {
     return
@@ -33039,6 +33190,112 @@ var autoCssTransition = cached(function (name) {
     leaveClass: (name + "-leave"),
     leaveToClass: (name + "-leave-to"),
     leaveActiveClass: (name + "-leave-active")
+=======
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("Smartdevices")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-2" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { to: { name: "create" } }
+            },
+            [_vm._v("Create Smartdevice")]
+          )
+        ],
+        1
+      )
+    ]),
+    _c("br"),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.smartdevices, function(smartdevice) {
+          return _c("tr", { key: smartdevice.id }, [
+            _c("td", [_vm._v(_vm._s(smartdevice.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(smartdevice.serial))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(smartdevice.description))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(smartdevice.manufacturer.name))]),
+            _vm._v(" "),
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: {
+                      to: { name: "edit", params: { id: smartdevice.id } }
+                    }
+                  },
+                  [_vm._v("Edit")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.deleteSmartdevice(smartdevice.id)
+                    }
+                  }
+                },
+                [_vm._v("Delete")]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Smartdevice Serial")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Smartdevice Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Smartdevice manufacturer")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+>>>>>>> release/3.0.0
   }
 });
 
@@ -51420,14 +51677,14 @@ vue__WEBPACK_IMPORTED_MODULE_8___default.a.component('app-component', __webpack_
 var routes = [{
   name: 'home',
   path: '/',
-  component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _components_IndexComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'create',
   path: '/create',
   component: _components_CreateComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  name: 'posts',
-  path: '/posts',
+  name: 'smartdevices',
+  path: '/smartdevices',
   component: _components_IndexComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'edit',

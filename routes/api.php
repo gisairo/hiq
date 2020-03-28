@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/smartdevice/create', 'SmartDeviceController@store');
+Route::get('/smartdevice/edit/{id}', 'SmartDeviceController@edit');
+Route::post('/smartdevice/update/{id}', 'SmartDeviceController@update');
+Route::delete('/smartdevice/delete/{id}', 'SmartDeviceController@delete');
+Route::get('/smartdevices', 'SmartDeviceController@index');
+Route::get('/manufacturers', 'SmartDeviceController@manufacturers');
