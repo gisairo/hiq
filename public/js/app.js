@@ -1990,7 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      post: {},
+      smartdevice: {},
       manufacturer: 0,
       manufacturers: []
     };
@@ -2000,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var manufacturer_uri = "http://hydroiq.test/api/manufacturers";
     this.axios.get(manufacturer_uri).then(function (response2) {
-      _this.manufacturers = response2.data.data; // console.log(this.categories);
+      _this.manufacturers = response2.data.data;
     });
   },
   methods: {
@@ -2100,7 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
         smartdevice: this.smartdevice,
         manufacturer: this.manufacturer
       };
-      this.axios.smartdevice(uri, data2).then(function (response) {
+      this.axios.post(uri, data2).then(function (response) {
         _this2.$router.push({
           name: 'smartdevices'
         });
@@ -20574,19 +20574,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.title,
-                    expression: "smartdevice.title"
+                    value: _vm.smartdevice.serial,
+                    expression: "smartdevice.serial"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.smartdevice.title },
+                domProps: { value: _vm.smartdevice.serial },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "title", $event.target.value)
+                    _vm.$set(_vm.smartdevice, "serial", $event.target.value)
                   }
                 }
               })
@@ -20604,19 +20604,23 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.body,
-                    expression: "smartdevice.body"
+                    value: _vm.smartdevice.description,
+                    expression: "smartdevice.description"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { rows: "5" },
-                domProps: { value: _vm.smartdevice.body },
+                domProps: { value: _vm.smartdevice.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "body", $event.target.value)
+                    _vm.$set(
+                      _vm.smartdevice,
+                      "description",
+                      $event.target.value
+                    )
                   }
                 }
               })
@@ -20664,10 +20668,10 @@ var render = function() {
                     "option",
                     {
                       domProps: {
-                        value: { id: manufacturer.id, text: manufacturer.title }
+                        value: { id: manufacturer.id, text: manufacturer.name }
                       }
                     },
-                    [_vm._v(_vm._s(manufacturer.title) + "\n                 ")]
+                    [_vm._v(_vm._s(manufacturer.name) + "\n                 ")]
                   )
                 })
               ],
@@ -20730,26 +20734,26 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Smartdevice Title:")]),
+              _c("label", [_vm._v("Smartdevice Serial:")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.title,
-                    expression: "smartdevice.title"
+                    value: _vm.smartdevice.serial,
+                    expression: "smartdevice.serial"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text" },
-                domProps: { value: _vm.smartdevice.title },
+                domProps: { value: _vm.smartdevice.serial },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "title", $event.target.value)
+                    _vm.$set(_vm.smartdevice, "serial", $event.target.value)
                   }
                 }
               })
@@ -20760,26 +20764,30 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Smartdevice Body:")]),
+              _c("label", [_vm._v("Smartdevice Description:")]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.smartdevice.body,
-                    expression: "smartdevice.body"
+                    value: _vm.smartdevice.description,
+                    expression: "smartdevice.description"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { rows: "5" },
-                domProps: { value: _vm.smartdevice.body },
+                domProps: { value: _vm.smartdevice.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.smartdevice, "body", $event.target.value)
+                    _vm.$set(
+                      _vm.smartdevice,
+                      "description",
+                      $event.target.value
+                    )
                   }
                 }
               })
@@ -20827,10 +20835,10 @@ var render = function() {
                     "option",
                     {
                       domProps: {
-                        value: { id: manufacturer.id, text: manufacturer.title }
+                        value: { id: manufacturer.id, text: manufacturer.name }
                       }
                     },
-                    [_vm._v(_vm._s(manufacturer.title) + "\n                 ")]
+                    [_vm._v(_vm._s(manufacturer.name) + "\n                 ")]
                   )
                 })
               ],
@@ -20954,11 +20962,11 @@ var render = function() {
           return _c("tr", { key: smartdevice.id }, [
             _c("td", [_vm._v(_vm._s(smartdevice.id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(smartdevice.title))]),
+            _c("td", [_vm._v(_vm._s(smartdevice.serial))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(smartdevice.body))]),
+            _c("td", [_vm._v(_vm._s(smartdevice.description))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(smartdevice.manufacturer.title))]),
+            _c("td", [_vm._v(_vm._s(smartdevice.manufacturer.name))]),
             _vm._v(" "),
             _c(
               "td",
@@ -21008,9 +21016,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Smartdevice Title")]),
+        _c("th", [_vm._v("Smartdevice Serial")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Smartdevice Body")]),
+        _c("th", [_vm._v("Smartdevice Description")]),
         _vm._v(" "),
         _c("th", [_vm._v("Smartdevice manufacturer")]),
         _vm._v(" "),
@@ -36270,14 +36278,14 @@ vue__WEBPACK_IMPORTED_MODULE_8___default.a.component('app-component', __webpack_
 var routes = [{
   name: 'home',
   path: '/',
-  component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _components_IndexComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'create',
   path: '/create',
   component: _components_CreateComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  name: 'posts',
-  path: '/posts',
+  name: 'smartdevices',
+  path: '/smartdevices',
   component: _components_IndexComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'edit',

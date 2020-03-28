@@ -12,8 +12,8 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Smartdevice Title</th>
-                <th>Smartdevice Body</th>
+                <th>Smartdevice Serial</th>
+                <th>Smartdevice Description</th>
                 <th>Smartdevice manufacturer</th>
                 <th>Actions</th>
             </tr>
@@ -22,9 +22,9 @@
                 <tr v-for="smartdevice in smartdevices" :key="smartdevice.id">
 
                     <td>{{ smartdevice.id }}</td>
-                    <td>{{ smartdevice.title }}</td>
-                    <td>{{ smartdevice.body }}</td>
-                    <td>{{ smartdevice.manufacturer.title }}</td>
+                    <td>{{ smartdevice.serial }}</td>
+                    <td>{{ smartdevice.description }}</td>
+                    <td>{{ smartdevice.manufacturer.name }}</td>
                     <td><router-link :to="{name: 'edit', params: { id: smartdevice.id }}" class="btn btn-primary">Edit</router-link></td>
                     <td><button class="btn btn-danger" @click.prevent="deleteSmartdevice(smartdevice.id)">Delete</button></td>
                 </tr>
