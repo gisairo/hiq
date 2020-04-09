@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Manufacturer extends Model
 {
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['name'];
 
     public function smartdevices()
     {
